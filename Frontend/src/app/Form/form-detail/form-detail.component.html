@@ -1,1 +1,16 @@
-<p>form-detail works!</p>
+<h1 class="text-3xl text-center">Student List</h1>
+<ul class="list-disc mt-3">
+    <li class="flex justify-between items-start mb-2 border px-4 py-4 rounded-lg border-gray-300"
+        *ngFor="let item of service.list">
+        <div class="flex-grow-1 mouse-hover" (click)="populateForm(item)">
+            <div class="font-bold">{{item.firstName}} {{item.lastName}}</div>
+            <div>{{item.address}}</div>
+            <div>{{item.age}}</div>
+        </div>
+        <span>
+            <i class="fa-solid fa-trash-can border-gray-300 mouse-hover"
+            (click)="onDelete(item.id)"></i>
+        </span>
+
+    </li>
+</ul>

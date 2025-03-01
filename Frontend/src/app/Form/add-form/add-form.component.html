@@ -1,13 +1,19 @@
-<form class="max-w-sm mx-auto">
+<form class="max-w-sm mx-auto mt-5" #form ="ngForm" (submit)="onSubmit(form)" [class.submitted]="service.formSubmitted" novalidate autocomplete="off">
+    <input type="id" [value]="service.formData.id" class="hidden text">
     <div class="mb-5">
         <label for="firstname" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">First Name</label>
         <input type="text" id="text"
-            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required />
+            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" 
+            #firstName="ngModel" name="firstName"
+            [(ngModel)]="service.formData.firstName"
+            required />
     </div>
     <div class="mb-5">
         <label for="lastname" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Last Name</label>
         <input type="text" id="lastname"
             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+             #lastName="ngModel" name="lastName"
+            [(ngModel)] = "service.formData.lastName"
             required />
     </div>
 
@@ -15,6 +21,8 @@
         <label for="address" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Address</label>
         <input type="text" id="address"
             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+             #address="ngModel" name="address"
+            [(ngModel)] = "service.formData.address"
             required />
     </div>
 
@@ -22,10 +30,17 @@
         <label for="age" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Age</label>
         <input type="text" id="age"
             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-            required />
+             #age="ngModel" name="age"
+            [(ngModel)] = "service.formData.age"
+            required
+            pattern="^[0-9]*$"/>
+            <div *ngIf="age?.invalid && age?.touched">
+                <span *ngIf="age?.errors?.['required']" class="text-red-500 text-sm">Age is required.</span>
+                <span *ngIf="age?.errors?.['pattern']" class="text-red-500 text-sm">Only Numbers are allowd</span>
+            </div>
     </div>
-   
+   <div class="flex justify-center">
     <button type="submit"
         class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Submit</button>
+        </div>
 </form>
-
