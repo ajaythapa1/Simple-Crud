@@ -23,7 +23,7 @@ namespace Form.Controllers
             return Ok(await _context.Set<Student>().ToListAsync() ?? throw new Exception("Error while fetching"));
         }
 
-        [HttpGet("/{id}")]
+        [HttpGet("{id}")]
         public async Task<ActionResult> GetStudentById(Guid id) 
         {
             var student = await _context.Students.SingleOrDefaultAsync(x => x.Id == id);
@@ -68,7 +68,7 @@ namespace Form.Controllers
         }
      
 
-        [HttpDelete("/id")]
+        [HttpDelete("{id}")]
         public async  Task<ActionResult> DeleteStudent(Guid Id) 
         {
             var student = await _context.Students.FindAsync(Id) ?? throw new Exception("Error while deleting");
